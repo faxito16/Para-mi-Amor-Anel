@@ -20,6 +20,45 @@ songAudios.forEach(audio => {
     });
 });
 
+const bouquetLetter = document.getElementById('bouquet-letter');
+const flowerMessage = document.getElementById('flower-message');
+const closeFlowerMessage = document.getElementById('flower-message-close');
+
+function setFlowerMessageOpen(isOpen, restoreFocus = true) {
+    if (!bouquetLetter || !flowerMessage) return;
+    flowerMessage.hidden = !isOpen;
+    bouquetLetter.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen && closeFlowerMessage) closeFlowerMessage.focus();
+    if (!isOpen && restoreFocus) bouquetLetter.focus();
+}
+
+if (bouquetLetter) {
+    bouquetLetter.addEventListener('click', () => setFlowerMessageOpen(true));
+}
+
+if (closeFlowerMessage) {
+    closeFlowerMessage.addEventListener('click', () => setFlowerMessageOpen(false));
+}
+
+if (flowerMessage) {
+    flowerMessage.addEventListener('click', event => {
+        if (event.target === flowerMessage) setFlowerMessageOpen(false);
+    });
+}
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && flowerMessage && !flowerMessage.hidden) {
+        setFlowerMessageOpen(false);
+    }
+});
+
+const specialVideos = document.querySelectorAll('#screen-video2 video, #screen-video3 video');
+specialVideos.forEach(video => {
+    video.addEventListener('play', () => {
+        songAudios.forEach(audio => audio.pause());
+    });
+});
+
 // Acción al hacer clic en "YES PLEASE"
 if (yesBtn) {
     yesBtn.addEventListener('click', () => {
@@ -62,6 +101,12 @@ function openSection(sectionName) {
 
     const targetScreen = document.getElementById(`screen-${sectionName}`);
     if (targetScreen) {
+        if (sectionName === 'flowers') {
+            setFlowerMessageOpen(false, false);
+            targetScreen.classList.remove('blooming');
+            void targetScreen.offsetWidth;
+            targetScreen.classList.add('blooming');
+        }
         targetScreen.classList.add('active');
     }
 }
@@ -73,9 +118,54 @@ function goToWelcome() {
 }
 
 // Función para regresar al menú principal desde cualquier sección
+const sectionsToResetOnReturn = new Set([
+    'screen-video2',
+    'screen-video3',
+    'screen-pictures',
+    'screen-flowers',
+    'screen-letter'
+]);
+
+function resetSectionBeforeLeaving(screen) {
+    if (!sectionsToResetOnReturn.has(screen.id)) {
+        return;
+    }
+
+    if (screen.id === 'screen-flowers') {
+        setFlowerMessageOpen(false, false);
+        screen.classList.remove('blooming');
+    }
+
+    const isSpecialVideoScreen = screen.id === 'screen-video2' || screen.id === 'screen-video3';
+    screen.querySelectorAll('video').forEach(video => {
+        video.pause();
+
+        if (isSpecialVideoScreen) {
+            // Reloading resets playback and restores the HTML poster image.
+            video.load();
+            return;
+        }
+
+        try {
+            video.currentTime = 0;
+        } catch (error) {
+            video.load();
+        }
+    });
+
+    screen.querySelectorAll('.card-container, .letter-text').forEach(element => {
+        element.scrollTop = 0;
+    });
+}
+
 function goBackToMenu() {
     const allScreens = document.querySelectorAll('.screen');
-    allScreens.forEach(screen => screen.classList.remove('active'));
+    allScreens.forEach(screen => {
+        if (screen.classList.contains('active')) {
+            resetSectionBeforeLeaving(screen);
+        }
+        screen.classList.remove('active');
+    });
     screenMenu.classList.add('active');
 }
 
