@@ -929,8 +929,9 @@ button:hover {
 
 .flower-head {
     opacity: 0;
-    clip-path: inset(48% 48% round 50%);
 }
+
+.rose-canopy { opacity: 0; }
 
 .flower-outline {
     fill: none;
@@ -1057,12 +1058,12 @@ button:hover {
     position: relative;
     display: grid;
     width: min(100%, 390px);
-    min-height: 230px;
+    min-height: 310px;
     place-items: center;
-    padding: 42px 28px 28px;
+    padding: 44px 28px 20px;
     border: 2px solid #d9b66f;
     border-radius: 12px 12px 20px 20px;
-    background: repeating-linear-gradient(#fffdf8 0 33px, #f7e8e6 34px 35px);
+    background: repeating-linear-gradient(#fffdf8 0 28px, #f7e8e6 29px 30px);
     box-shadow: 0 16px 42px rgba(93, 35, 47, .28), inset 0 0 0 6px rgba(255,255,255,.7);
     animation: letter-open .55s cubic-bezier(.2,.8,.25,1) both;
 }
@@ -1079,7 +1080,16 @@ button:hover {
 }
 
 .message-heart { position: absolute; top: 22px; left: 50%; color: #d64d6a; transform: translateX(-50%); }
-.flower-message-words { width: 100%; min-height: 100px; margin: 15px 0 0; }
+.flower-message-words {
+    width: 100%;
+    min-height: 240px;
+    margin: 0;
+    color: #67474b;
+    font-family: 'Caveat', cursive;
+    font-size: clamp(13px, 3.8vw, 16px);
+    line-height: 30px;
+    text-align: left;
+}
 
 #screen-flowers.blooming .stem-group {
     animation: stem-rise 1.15s cubic-bezier(0.2, 0.75, 0.25, 1) both;
@@ -1103,29 +1113,15 @@ button:hover {
     animation: bloom-open 0.9s cubic-bezier(0.2, 0.7, 0.25, 1) both;
 }
 
-#screen-flowers.blooming .rose-head:nth-of-type(1) { animation-delay: 0.28s; }
-#screen-flowers.blooming .rose-head:nth-of-type(2) { animation-delay: 0.34s; }
-#screen-flowers.blooming .rose-head:nth-of-type(3) { animation-delay: 0.4s; }
-#screen-flowers.blooming .rose-head:nth-of-type(4) { animation-delay: 0.46s; }
-#screen-flowers.blooming .rose-head:nth-of-type(5) { animation-delay: 0.52s; }
-#screen-flowers.blooming .rose-head:nth-of-type(6) { animation-delay: 0.58s; }
-#screen-flowers.blooming .rose-head:nth-of-type(7) { animation-delay: 0.64s; }
-#screen-flowers.blooming .rose-head:nth-of-type(8) { animation-delay: 0.7s; }
-#screen-flowers.blooming .rose-head:nth-of-type(9) { animation-delay: 0.76s; }
-#screen-flowers.blooming .rose-head:nth-of-type(10) { animation-delay: 0.82s; }
-#screen-flowers.blooming .rose-head:nth-of-type(11) { animation-delay: 0.88s; }
-#screen-flowers.blooming .rose-head:nth-of-type(12) { animation-delay: 0.94s; }
-#screen-flowers.blooming .rose-head:nth-of-type(13) { animation-delay: 1s; }
-#screen-flowers.blooming .rose-head:nth-of-type(14) { animation-delay: 1.06s; }
-#screen-flowers.blooming .rose-head:nth-of-type(15) { animation-delay: 1.12s; }
-#screen-flowers.blooming .rose-head:nth-of-type(16) { animation-delay: 1.18s; }
+#screen-flowers.blooming .rose-canopy {
+    animation: rose-canopy-appear 0.95s ease-out 0.28s both;
+}
 
-#screen-flowers.blooming .rose-fill .rose-head:nth-child(6n + 1) { animation-delay: 0.14s; }
-#screen-flowers.blooming .rose-fill .rose-head:nth-child(6n + 2) { animation-delay: 0.22s; }
-#screen-flowers.blooming .rose-fill .rose-head:nth-child(6n + 3) { animation-delay: 0.3s; }
-#screen-flowers.blooming .rose-fill .rose-head:nth-child(6n + 4) { animation-delay: 0.38s; }
-#screen-flowers.blooming .rose-fill .rose-head:nth-child(6n + 5) { animation-delay: 0.46s; }
-#screen-flowers.blooming .rose-fill .rose-head:nth-child(6n) { animation-delay: 0.54s; }
+#screen-flowers.blooming .rose-head {
+    opacity: 1;
+    clip-path: none;
+    animation: none;
+}
 
 #screen-flowers.blooming .tulip-one { animation-delay: 0.62s; }
 #screen-flowers.blooming .tulip-two { animation-delay: 0.76s; }
@@ -1189,9 +1185,14 @@ button:hover {
 }
 
 @keyframes bloom-open {
-    0% { opacity: 0; clip-path: inset(48% 48% round 50%); }
-    35% { opacity: 1; }
-    100% { opacity: 1; clip-path: inset(0 round 8%); }
+    0% { opacity: 0; }
+    35% { opacity: .45; }
+    100% { opacity: 1; }
+}
+
+@keyframes rose-canopy-appear {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes tie-appear {
@@ -1247,8 +1248,8 @@ button:hover {
 }
 
 @keyframes bead-shine {
-    from { filter: brightness(.85); }
-    to { filter: brightness(1.45); }
+    from { opacity: .72; }
+    to { opacity: 1; }
 }
 
 @media (max-width: 600px) {
@@ -1261,13 +1262,16 @@ button:hover {
     }
 
     #screen-flowers .flower-message-paper {
-        min-height: 200px;
+        min-height: 310px;
+        padding-right: 22px;
+        padding-left: 22px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
     #screen-flowers.blooming .stem-group,
     #screen-flowers.blooming .flower-head,
+    #screen-flowers.blooming .rose-canopy,
     #screen-flowers.blooming .bouquet-paper-back,
     #screen-flowers.blooming .bouquet-wrap-front,
     #screen-flowers.blooming .bouquet-tie,
