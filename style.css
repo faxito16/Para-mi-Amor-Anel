@@ -514,7 +514,8 @@ button:hover {
     max-height: calc(100vh - 24px);
     min-height: 0;
     padding: 8px 10px;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 10px;
 }
 
 #screen-pictures .gallery-row {
@@ -552,7 +553,7 @@ button:hover {
 
 @media (max-height: 650px) {
     #screen-pictures .gallery {
-        max-width: min(550px, calc((100vh - 130px) * 1.18));
+        max-width: min(550px, calc((100vh - 160px) * 1.18));
         gap: 3px;
         margin-bottom: 0;
     }
@@ -562,7 +563,7 @@ button:hover {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     #screen-pictures .card-container {
         width: calc(100% - 20px);
         max-width: none;
@@ -579,7 +580,7 @@ button:hover {
 
     #screen-pictures h2 {
         flex: 0 0 auto;
-        font-size: clamp(2rem, 8vw, 2.6rem);
+        font-size: clamp(1.75rem, 5.5vw, 2.5rem);
     }
 
     #screen-pictures .gallery {
