@@ -501,8 +501,8 @@ button:hover {
 #screen-pictures .gallery {
     display: flex;
     flex-direction: column;
-    width: min(100%, 440px);
-    max-width: 440px;
+    width: min(100%, 550px);
+    max-width: 550px;
     gap: 3px;
     margin-bottom: 0;
 }
@@ -552,13 +552,62 @@ button:hover {
 
 @media (max-height: 650px) {
     #screen-pictures .gallery {
-        max-width: min(440px, calc((100vh - 130px) * 1.18));
+        max-width: min(550px, calc((100vh - 130px) * 1.18));
         gap: 3px;
         margin-bottom: 0;
     }
 
     #screen-pictures .return-btn {
         margin-top: 2px;
+    }
+}
+
+@media (max-width: 600px) {
+    #screen-pictures .card-container {
+        width: calc(100% - 20px);
+        max-width: none;
+        height: calc(100vh - 20px);
+        height: calc(100dvh - 20px);
+        max-height: calc(100vh - 20px);
+        max-height: calc(100dvh - 20px);
+        padding: 10px 8px;
+        justify-content: flex-start;
+        gap: 10px;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+
+    #screen-pictures h2 {
+        flex: 0 0 auto;
+        font-size: clamp(2rem, 8vw, 2.6rem);
+    }
+
+    #screen-pictures .gallery {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        max-width: none;
+        gap: 10px;
+    }
+
+    #screen-pictures .gallery-row {
+        display: contents;
+        aspect-ratio: auto;
+    }
+
+    #screen-pictures .gallery-row .photo-frame {
+        height: auto;
+        aspect-ratio: 0.75 / 1;
+    }
+
+    #screen-pictures .return-btn {
+        position: sticky;
+        bottom: 0;
+        z-index: 2;
+        flex: 0 0 auto;
+        align-self: center;
+        margin-top: auto;
+        background: rgba(255, 255, 255, 0.96);
     }
 }
 
