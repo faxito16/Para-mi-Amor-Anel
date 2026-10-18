@@ -194,7 +194,7 @@ button:hover {
 /* Galería: seis fotos más grandes */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(3, 145px);
+    grid-template-columns: repeat(2, 145px);
     gap: 15px;
     margin-bottom: 20px;
     justify-content: center;
@@ -212,6 +212,28 @@ button:hover {
     font-size: 1.05rem;
     color: #888;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.video-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #000;
+}
+
+.photo-frame.empty {
+    background: rgba(255, 255, 255, 0.35);
+    border: 2px dashed rgba(179, 57, 57, 0.5);
+    box-shadow: none;
 }
 
 .letter-text {
@@ -419,7 +441,7 @@ button:hover {
 
 .gallery {
     display: grid;
-    grid-template-columns: repeat(3, 145px);
+    grid-template-columns: repeat(2, 145px);
     gap: 15px;
     margin-bottom: 20px;
     justify-content: center;
@@ -450,4 +472,234 @@ button:hover {
 
 .return-btn {
     margin-top: 10px;
+}
+
+#screen-letter .card-container {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.58)), url('imagen1.png.png');
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-height: 650px) {
+    .gallery {
+        grid-template-columns: repeat(2, 95px);
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    .photo-frame {
+        width: 95px;
+        height: 110px;
+    }
+}
+
+#screen-no-thanks {
+    background-color: #f6f3ec;
+    background-image:
+        repeating-linear-gradient(8deg, rgba(255, 255, 255, 0.16) 0 2px, rgba(92, 77, 67, 0.025) 3px 4px, transparent 5px 13px),
+        repeating-linear-gradient(97deg, transparent 0 18px, rgba(255, 255, 255, 0.18) 19px 21px, transparent 22px 37px);
+}
+
+.no-thanks-content {
+    width: min(90%, 600px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px;
+}
+
+.crying-doodle {
+    width: 90px;
+    height: 72px;
+    overflow: visible;
+    margin-bottom: -5px;
+}
+
+.doodle-shake {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: crying-shake 0.28s ease-in-out infinite;
+}
+
+.doodle-face {
+    fill: #d9bcae;
+    stroke: #29252a;
+    stroke-width: 4.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+.doodle-brow,
+.doodle-mouth {
+    fill: none;
+    stroke: #29252a;
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.doodle-eye {
+    fill: #fffdfb;
+    stroke: #29252a;
+    stroke-width: 3;
+}
+
+.doodle-pupil {
+    fill: #29252a;
+}
+
+.doodle-highlight {
+    fill: white;
+}
+
+.tear-stream {
+    transform-box: fill-box;
+    transform-origin: center top;
+    animation: tear-flow 0.9s ease-in-out infinite;
+}
+
+.tear-stream-right {
+    animation-delay: 0.45s;
+}
+
+.doodle-tear-outline {
+    fill: none;
+    stroke: #168eaa;
+    stroke-width: 7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.doodle-tear {
+    fill: none;
+    stroke: #78e2f4;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.tear-drop {
+    fill: #78e2f4;
+    stroke: #168eaa;
+    stroke-width: 1.5;
+    animation: tear-drop-fall 0.9s ease-in-out infinite;
+}
+
+.tear-stream-right .tear-drop {
+    animation-delay: 0.45s;
+}
+
+.no-thanks-title {
+    color: #a92836;
+    font-size: 3rem;
+    line-height: 1.05;
+    margin: 0 0 18px;
+}
+
+.try-again-btn {
+    min-width: 150px;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+@keyframes crying-shake {
+    0%, 100% { transform: translateX(0) rotate(0); }
+    25% { transform: translateX(-2px) rotate(-2deg); }
+    75% { transform: translateX(2px) rotate(2deg); }
+}
+
+@keyframes tear-fall {
+    0% { opacity: 0.45; transform: translateY(-1px); }
+    20% { opacity: 1; }
+    100% { opacity: 0.7; transform: translateY(5px); }
+}
+
+@keyframes tear-flow {
+    0%, 100% { transform: translateY(0); opacity: 0.8; }
+    50% { transform: translateY(4px); opacity: 1; }
+}
+
+@keyframes tear-drop-fall {
+    0% { transform: translateY(-3px) scale(0.75); opacity: 0; }
+    35% { opacity: 1; }
+    100% { transform: translateY(5px) scale(1); opacity: 0.2; }
+}
+
+@media (max-width: 480px) {
+    .no-thanks-title {
+        font-size: 2.3rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .doodle-shake,
+    .tear-stream,
+    .tear-drop {
+        animation-duration: 1.5s;
+    }
+}
+
+.menu-video-link {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    width: 48px;
+    height: 48px;
+    padding: 3px;
+    border: 2px solid #b33939;
+    border-radius: 10px;
+    background: white;
+    color: #b33939;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.menu-video-link-right {
+    left: auto;
+    right: 14px;
+}
+
+.menu-video-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+}
+
+.menu-video-link span {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #b33939;
+    color: white;
+    font: 9px/17px Arial, sans-serif;
+    text-align: center;
+}
+
+.menu-video-link:hover {
+    background: white;
+    color: #b33939;
+    transform: scale(1.06);
+}
+
+.special-video-card h2 {
+    margin-bottom: 18px;
+}
+
+.special-video {
+    display: block;
+    width: min(100%, 480px);
+    max-height: 60vh;
+    object-fit: contain;
+    background: #000;
+    border-radius: 10px;
+}
+
+.special-video-card .return-btn {
+    margin-top: 18px;
 }

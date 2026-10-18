@@ -5,6 +5,20 @@ const noBtn = document.getElementById('no-btn');
 
 const screenWelcome = document.getElementById('screen-welcome');
 const screenMenu = document.getElementById('screen-menu');
+const screenNoThanks = document.getElementById('screen-no-thanks');
+const tryAgainBtn = document.getElementById('try-again-btn');
+let noBtnEscaped = false;
+
+const songAudios = document.querySelectorAll('#screen-song audio');
+songAudios.forEach(audio => {
+    audio.addEventListener('play', () => {
+        songAudios.forEach(otherAudio => {
+            if (otherAudio !== audio) {
+                otherAudio.pause();
+            }
+        });
+    });
+});
 
 // Acción al hacer clic en "YES PLEASE"
 if (yesBtn) {
@@ -14,12 +28,31 @@ if (yesBtn) {
     });
 }
 
-// Acción divertida para el botón "NO THANKS" (Se mueve al pasar el mouse)
+// El botón escapa una vez y luego se puede elegir normalmente.
 if (noBtn) {
-    noBtn.addEventListener('mouseover', () => {
+    noBtn.addEventListener('pointerenter', event => {
+        if (event.pointerType !== 'mouse' || noBtnEscaped) {
+            return;
+        }
+
+        noBtnEscaped = true;
         const randomX = Math.random() * 220 - 110;
         const randomY = Math.random() * 120 - 60;
         noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    });
+
+    noBtn.addEventListener('click', () => {
+        screenWelcome.classList.remove('active');
+        screenNoThanks.classList.add('active');
+    });
+}
+
+if (tryAgainBtn) {
+    tryAgainBtn.addEventListener('click', () => {
+        screenNoThanks.classList.remove('active');
+        screenWelcome.classList.add('active');
+        noBtn.style.transform = '';
+        noBtnEscaped = false;
     });
 }
 

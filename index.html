@@ -40,9 +40,50 @@
         </div>
     </div>
 
+    <!-- Pantalla al elegir NO THANKS -->
+    <div id="screen-no-thanks" class="screen no-thanks-screen">
+        <div class="no-thanks-content">
+            <svg class="crying-doodle" viewBox="0 0 140 110" role="img" aria-label="Carita llorando">
+                <g class="doodle-shake">
+                    <path class="doodle-face" d="M22 92V54C22 29 42 14 70 14s48 15 48 40v38c-25 8-71 8-96 0Z" />
+                    <path class="doodle-brow" d="m39 40 16-8m46 8-16-8" />
+                    <path class="doodle-eye" d="M38 47c2-12 8-18 15-16 8 2 12 12 10 24-2 10-7 15-14 13-8-2-13-10-11-21Z" />
+                    <path class="doodle-eye" d="M102 47c-2-12-8-18-15-16-8 2-12 12-10 24 2 10 7 15 14 13 8-2 13-10 11-21Z" />
+                    <path class="doodle-pupil" d="M44 42c2-7 6-10 10-8 5 2 7 8 6 15-1 7-5 11-9 10-5-1-8-8-7-17Z" />
+                    <path class="doodle-pupil" d="M96 42c-2-7-6-10-10-8-5 2-7 8-6 15 1 7 5 11 9 10 5-1 8-8 7-17Z" />
+                    <path class="doodle-highlight" d="M45 36c3-4 6-4 8 0l2 5c-3 3-7 2-10-1Z" />
+                    <path class="doodle-highlight" d="M95 36c-3-4-6-4-8 0l-2 5c3 3 7 2 10-1Z" />
+                    <circle class="doodle-highlight" cx="57" cy="52" r="2.5" />
+                    <circle class="doodle-highlight" cx="83" cy="52" r="2.5" />
+                    <path class="doodle-mouth" d="M65 75q3-5 5 0t5 0" />
+                    <g class="tear-stream tear-stream-left">
+                        <path class="doodle-tear-outline" d="M35 54c-5 8-6 17-3 26 3 7 4 14 1 22" />
+                        <path class="doodle-tear" d="M35 54c-5 8-6 17-3 26 3 7 4 14 1 22" />
+                        <path class="tear-drop" d="M38 98c-5 6-5 9 0 12 5-3 5-6 0-12Z" />
+                    </g>
+                    <g class="tear-stream tear-stream-right">
+                        <path class="doodle-tear-outline" d="M105 54c5 8 6 17 3 26-3 7-4 14-1 22" />
+                        <path class="doodle-tear" d="M105 54c5 8 6 17 3 26-3 7-4 14-1 22" />
+                        <path class="tear-drop" d="M102 98c-5 6-5 9 0 12 5-3 5-6 0-12Z" />
+                    </g>
+                </g>
+            </svg>
+            <h1 class="no-thanks-title">I promise you'll like it</h1>
+            <button id="try-again-btn" class="try-again-btn">TRY AGAIN</button>
+        </div>
+    </div>
+
     <!-- Pantalla 2: Menú Principal -->
     <div id="screen-menu" class="screen">
         <div class="card-container">
+            <button class="menu-video-link" type="button" onclick="openSection('video2')" aria-label="Abrir video especial" title="Video especial">
+                <img src="imagen3.png.jpeg" alt="">
+                <span aria-hidden="true">▶</span>
+            </button>
+            <button class="menu-video-link menu-video-link-right" type="button" onclick="openSection('video3')" aria-label="Abrir segundo video especial" title="Segundo video especial">
+                <img src="imagen2.png.jpeg" alt="">
+                <span aria-hidden="true">▶</span>
+            </button>
             <h1>THESE ARE FOR YOU!</h1>
             <p class="subtitle">I hope you like it, I love you!</p>
             <div class="grid-menu">
@@ -55,17 +96,59 @@
         </div>
     </div>
 
+    <!-- Pantalla de video especial -->
+    <div id="screen-video2" class="screen">
+        <div class="card-container special-video-card">
+            <h2>Special video</h2>
+            <video class="special-video" controls playsinline disablepictureinpicture preload="metadata" poster="imagen.png.png" aria-label="Video especial">
+                <source src="video2.png.mp4" type="video/mp4">
+                Tu navegador no puede reproducir este video.
+            </video>
+            <button class="return-btn" onclick="goBackToMenu()">RETURN</button>
+        </div>
+    </div>
+
+    <!-- Segunda pantalla de video especial -->
+    <div id="screen-video3" class="screen">
+        <div class="card-container special-video-card">
+            <h2>Special video</h2>
+            <video class="special-video" controls playsinline disablepictureinpicture preload="metadata" poster="imagendepucca.png.jpg" aria-label="Segundo video especial">
+                <source src="video3.png.mp4" type="video/mp4">
+                Tu navegador no puede reproducir este video.
+            </video>
+            <button class="return-btn" onclick="goBackToMenu()">RETURN</button>
+        </div>
+    </div>
+
     <!-- Pantalla 3: Sección de Fotos -->
     <div id="screen-pictures" class="screen">
         <div class="card-container">
             <h2>Captured Memories</h2>
             <div class="gallery">
-                <div class="photo-frame">📷 Foto 1</div>
-                <div class="photo-frame">📷 Foto 2</div>
-                <div class="photo-frame">📷 Foto 3</div>
-                <div class="photo-frame">📷 Foto 4</div>
-                <div class="photo-frame">📷 Foto 5</div>
-                <div class="photo-frame">📷 Foto 6</div>
+                <div class="photo-frame">
+                    <img src="fondo1.png.jpg" alt="Foto 1">
+                </div>
+                <div class="photo-frame">
+                    <img src="fondo2.png.jpg" alt="Foto 2">
+                </div>
+                <div class="photo-frame">
+                    <img src="fondo3.png.jpg" alt="Foto 3">
+                </div>
+                <div class="photo-frame">
+                    <img src="fondo4.png.jpg" alt="Foto 4">
+                </div>
+                <div class="photo-frame video-frame">
+                    <video controls playsinline disablepictureinpicture preload="metadata" aria-label="Video 1">
+                        <source src="https://files.catbox.moe/doty8e.mp4" type="video/mp4">
+                        Tu navegador no puede reproducir este video.
+                    </video>
+                </div>
+                <div class="photo-frame video-frame">
+                    <video controls playsinline disablepictureinpicture preload="metadata" aria-label="Video 2">
+                        <source src="https://files.catbox.moe/wq3qnb.mp4" type="video/mp4">
+                        Tu navegador no puede reproducir este video.
+                    </video>
+                </div>
             </div>
             <button class="return-btn" onclick="goBackToMenu()">RETURN</button>
         </div>
@@ -89,6 +172,16 @@
             <!-- Reproductor con tu enlace directo de Catbox -->
             <audio controls style="width: 85%; margin-bottom: 20px; border-radius: 30px;">
                 <source src="https://files.catbox.moe/ilr52b.mpeg" type="audio/mpeg">
+                Tu navegador no soporta el reproductor de audio.
+            </audio>
+
+            <audio controls aria-label="Segunda canción" style="width: 85%; margin-bottom: 20px; border-radius: 30px;">
+                <source src="https://files.catbox.moe/zrm0rs.mpeg" type="audio/mpeg">
+                Tu navegador no soporta el reproductor de audio.
+            </audio>
+
+            <audio controls aria-label="Tercera canción" style="width: 85%; margin-bottom: 20px; border-radius: 30px;">
+                <source src="https://files.catbox.moe/hqg418.mpeg" type="audio/mpeg">
                 Tu navegador no soporta el reproductor de audio.
             </audio>
 
