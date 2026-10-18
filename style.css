@@ -503,17 +503,18 @@ button:hover {
     flex-direction: column;
     width: min(100%, 440px);
     max-width: 440px;
-    gap: 4px;
+    gap: 3px;
     margin-bottom: 0;
 }
 
 #screen-pictures .card-container {
-    width: min(93.6%, 707px);
-    max-width: 707px;
-    height: 81vh;
+    width: min(96%, 760px);
+    max-width: 760px;
+    height: 96vh;
     max-height: calc(100vh - 24px);
     min-height: 0;
     padding: 8px 10px;
+    justify-content: space-between;
 }
 
 #screen-pictures .gallery-row {
@@ -521,7 +522,7 @@ button:hover {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     width: 100%;
     gap: 10px;
-    aspect-ratio: 2.238 / 1;
+    aspect-ratio: 2.36 / 1;
 }
 
 #screen-pictures .gallery-row .photo-frame {
@@ -530,14 +531,19 @@ button:hover {
     min-width: 0;
     border-width: 3px;
     border-radius: 7px;
+    background: #281a19;
     box-shadow:
         0 0 0 2px rgba(179, 57, 57, 0.4),
         0 0 0 4px rgba(255, 111, 128, 0.24),
         0 4px 8px rgba(0, 0, 0, 0.12);
 }
 
+#screen-pictures .photo-frame img {
+    object-fit: cover;
+}
+
 #screen-pictures h2 {
-    margin-bottom: 4px;
+    margin: 0;
 }
 
 #screen-pictures .return-btn {
@@ -546,8 +552,8 @@ button:hover {
 
 @media (max-height: 650px) {
     #screen-pictures .gallery {
-        max-width: 380px;
-        gap: 6px;
+        max-width: min(440px, calc((100vh - 130px) * 1.18));
+        gap: 3px;
         margin-bottom: 0;
     }
 
