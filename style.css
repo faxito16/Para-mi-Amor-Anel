@@ -501,7 +501,7 @@ button:hover {
 #screen-pictures .gallery {
     display: flex;
     flex-direction: column;
-    max-width: 380px;
+    max-width: 440px;
     gap: 10px;
     margin-bottom: 6px;
 }
