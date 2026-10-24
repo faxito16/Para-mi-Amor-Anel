@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self' https://fonts.googleapis.com; style-src-attr 'none'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self' https://files.catbox.moe; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; manifest-src 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="no-referrer">
     <title>Para Mi Amor</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -76,23 +78,23 @@
     <!-- Pantalla 2: Menú Principal -->
     <div id="screen-menu" class="screen">
         <div class="card-container">
-            <button class="menu-video-link" type="button" onclick="openSection('video2')" aria-label="Abrir video especial" title="Video especial">
+            <button class="menu-video-link" type="button" data-open-section="video2" aria-label="Abrir video especial" title="Video especial">
                 <img src="imagen3.png.jpeg" alt="">
                 <span aria-hidden="true">▶</span>
             </button>
-            <button class="menu-video-link menu-video-link-right" type="button" onclick="openSection('video3')" aria-label="Abrir segundo video especial" title="Segundo video especial">
+            <button class="menu-video-link menu-video-link-right" type="button" data-open-section="video3" aria-label="Abrir segundo video especial" title="Segundo video especial">
                 <img src="imagen2.png.jpeg" alt="">
                 <span aria-hidden="true">▶</span>
             </button>
             <h1>THESE ARE FOR YOU!</h1>
             <p class="subtitle">I hope you like it, I love you!</p>
             <div class="grid-menu">
-                <div class="menu-item" onclick="openSection('pictures')">🖼️</div>
-                <div class="menu-item" onclick="openSection('flowers')">💐</div>
-                <div class="menu-item" onclick="openSection('song')">🎵</div>
-                <div class="menu-item" onclick="openSection('letter')">💌</div>
+                <div class="menu-item" data-open-section="pictures" role="button" tabindex="0" aria-label="Abrir fotos">🖼️</div>
+                <div class="menu-item" data-open-section="flowers" role="button" tabindex="0" aria-label="Abrir flores">💐</div>
+                <div class="menu-item" data-open-section="song" role="button" tabindex="0" aria-label="Abrir música">🎵</div>
+                <div class="menu-item" data-open-section="letter" role="button" tabindex="0" aria-label="Abrir carta">💌</div>
             </div>
-            <button class="return-btn" onclick="goToWelcome()">RETURN</button>
+            <button class="return-btn" data-site-action="welcome">RETURN</button>
         </div>
     </div>
 
@@ -104,7 +106,7 @@
                 <source src="video2.png.mp4" type="video/mp4">
                 Tu navegador no puede reproducir este video.
             </video>
-            <button class="return-btn" onclick="goBackToMenu()">RETURN</button>
+            <button class="return-btn" data-site-action="menu">RETURN</button>
         </div>
     </div>
 
@@ -116,7 +118,7 @@
                 <source src="video3.png.mp4" type="video/mp4">
                 Tu navegador no puede reproducir este video.
             </video>
-            <button class="return-btn" onclick="goBackToMenu()">RETURN</button>
+            <button class="return-btn" data-site-action="menu">RETURN</button>
         </div>
     </div>
 
@@ -154,7 +156,7 @@
                     </div>
                 </div>
             </div>
-            <button class="return-btn" onclick="goBackToMenu()">RETURN</button>
+            <button class="return-btn" data-site-action="menu">RETURN</button>
         </div>
     </div>
 
@@ -442,7 +444,7 @@
                     <p class="flower-message-words" aria-live="polite">Mi amor, espero que estas flores<br>te gusten mucho. Mi mayor deseo es<br>verte feliz, porque tu sonrisa es<br>la mía. Te doy este detalle con<br>todo mi corazón, el cual incluye<br>astromelias, tulipanes y lirios<br>especialmente para ti. Espero que<br>te encanten. Te amo &lt;3</p>
                 </div>
             </div>
-            <button class="return-btn" onclick="goBackToMenu()">RETURN</button>
+            <button class="return-btn" data-site-action="menu">RETURN</button>
         </div>
     </div>
 
@@ -453,22 +455,27 @@
             <p>this song reminds me of you (&gt;.&lt;)</p>
 
             <!-- Reproductor con tu enlace directo de Catbox -->
-            <audio controls style="width: 85%; margin-bottom: 20px; border-radius: 30px;">
+            <audio class="song-audio" controls>
                 <source src="https://files.catbox.moe/ilr52b.mpeg" type="audio/mpeg">
                 Tu navegador no soporta el reproductor de audio.
             </audio>
 
-            <audio controls aria-label="Segunda canción" style="width: 85%; margin-bottom: 20px; border-radius: 30px;">
+            <audio class="song-audio" controls aria-label="Segunda canción">
                 <source src="https://files.catbox.moe/zrm0rs.mpeg" type="audio/mpeg">
                 Tu navegador no soporta el reproductor de audio.
             </audio>
 
-            <audio controls aria-label="Tercera canción" style="width: 85%; margin-bottom: 20px; border-radius: 30px;">
+            <audio class="song-audio" controls aria-label="Tercera canción">
                 <source src="https://files.catbox.moe/hqg418.mpeg" type="audio/mpeg">
                 Tu navegador no soporta el reproductor de audio.
             </audio>
 
-            <button class="return-btn" onclick="goBackToMenu()">RETURN</button>
+            <audio class="song-audio" controls aria-label="Cuarta canción">
+                <source src="https://files.catbox.moe/8i9t0h.mpeg" type="audio/mpeg">
+                Tu navegador no soporta el reproductor de audio.
+            </audio>
+
+            <button class="return-btn" data-site-action="menu">RETURN</button>
         </div>
     </div>
 
@@ -479,7 +486,7 @@
             <p class="letter-text">
                 Anel, mi amor... Te escribo esto porque no puedo seguir guardando todo lo que llevo dentro. Extraño profundamente ser tu novio, extraño tenerte cerca, abrazarte y compartir la vida contigo como antes. A pesar de todo lo que hayamos pasado, mi amor por ti no ha cambiado en absoluto; al contrario, cada día me doy cuenta de lo importante e irremplazable que eres para mí. Me encantaría que nos diéramos una nueva oportunidad y volviéramos a ser pareja, para construir algo aún más bonito y sanar cualquier herida del pasado. Eres la persona con la que quiero estar, y este pequeño detalle es solo un recordatorio de que mi corazón siempre ha sido y seguirá siendo tuyo.
             </p>
-            <button class="return-btn" onclick="goBackToMenu()">RETURN</button>
+            <button class="return-btn" data-site-action="menu">RETURN</button>
         </div>
     </div>
 

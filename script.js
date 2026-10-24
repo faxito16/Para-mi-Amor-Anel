@@ -7,7 +7,6 @@ const screenWelcome = document.getElementById('screen-welcome');
 const screenMenu = document.getElementById('screen-menu');
 const screenNoThanks = document.getElementById('screen-no-thanks');
 const tryAgainBtn = document.getElementById('try-again-btn');
-let noBtnEscaped = false;
 
 const songAudios = document.querySelectorAll('#screen-song audio');
 songAudios.forEach(audio => {
@@ -67,19 +66,7 @@ if (yesBtn) {
     });
 }
 
-// El botón escapa una vez y luego se puede elegir normalmente.
 if (noBtn) {
-    noBtn.addEventListener('pointerenter', event => {
-        if (event.pointerType !== 'mouse' || noBtnEscaped) {
-            return;
-        }
-
-        noBtnEscaped = true;
-        const randomX = Math.random() * 220 - 110;
-        const randomY = Math.random() * 120 - 60;
-        noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
-    });
-
     noBtn.addEventListener('click', () => {
         screenWelcome.classList.remove('active');
         screenNoThanks.classList.add('active');
@@ -90,8 +77,6 @@ if (tryAgainBtn) {
     tryAgainBtn.addEventListener('click', () => {
         screenNoThanks.classList.remove('active');
         screenWelcome.classList.add('active');
-        noBtn.style.transform = '';
-        noBtnEscaped = false;
     });
 }
 
@@ -168,4 +153,28 @@ function goBackToMenu() {
     });
     screenMenu.classList.add('active');
 }
+
+document.querySelectorAll('[data-open-section]').forEach(control => {
+    const openTarget = () => openSection(control.dataset.openSection);
+    control.addEventListener('click', openTarget);
+
+    if (control.getAttribute('role') === 'button') {
+        control.addEventListener('keydown', event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openTarget();
+            }
+        });
+    }
+});
+
+document.querySelectorAll('[data-site-action]').forEach(control => {
+    control.addEventListener('click', () => {
+        if (control.dataset.siteAction === 'welcome') {
+            goToWelcome();
+        } else if (control.dataset.siteAction === 'menu') {
+            goBackToMenu();
+        }
+    });
+});
 

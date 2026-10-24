@@ -161,6 +161,17 @@ button:hover {
     transform: scale(1.05);
 }
 
+.song-audio {
+    width: 85%;
+    margin-bottom: 20px;
+    border-radius: 30px;
+}
+
+.menu-item[role="button"]:focus-visible {
+    outline: 3px solid #b33939;
+    outline-offset: 4px;
+}
+
 /* Cuadrícula de opciones */
 .grid-menu {
     display: grid;
